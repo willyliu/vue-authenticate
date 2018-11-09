@@ -1175,6 +1175,11 @@ OAuth2.prototype._stringifyRequestParams = function _stringifyRequestParams () {
         }
       }
 
+      // XXX: Workaround For kkbox OAuth2 authentication, encode redirect_uri
+      if (this$1.providerConfig.name === 'kkbox' && paramName === 'redirect_uri') {
+        paramValue = encodeURIComponent(paramValue);
+      }
+        
       keyValuePairs.push([paramName, paramValue]);
     });
   });
