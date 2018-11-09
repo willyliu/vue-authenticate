@@ -143,6 +143,11 @@ export default class OAuth2 {
           }
         }
 
+        // XXX: Workaround For kkbox OAuth2 authentication, encode redirect_uri
+        if (this.providerConfig.name === 'kkbox' && paramName === 'redirect_uri') {
+          paramValue = encodeURIComponent(paramValue)
+        }
+        
         keyValuePairs.push([paramName, paramValue])
       })
     })

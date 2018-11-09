@@ -643,6 +643,20 @@ var defaultOptions = {
       popupOptions: { width: 500, height: 560 }
     },
 
+    kkbox: {
+      name: 'kkbox',
+      url: '/auth/kkbox',
+      authorizationEndpoint: 'https://account.kkbox.com/oauth2/authorize',
+      redirectUri: getRedirectUri(),
+      requiredUrlParams: ['state', 'scope'],
+      state: 'STATE',
+      scope: ['user_profile', 'user_territory', 'user_account_status'],
+      scopeDelimiter: '+',
+      display: 'popup',
+      oauthType: '2.0',
+      popupOptions: { width: null, height: null }
+    },
+
     oauth1: {
       name: null,
       url: '/auth/oauth1',

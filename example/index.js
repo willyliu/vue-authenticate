@@ -7,6 +7,10 @@ Vue.use(VueAuthenticate, {
   storageType: 'cookieStorage',
   providers: {
     // Define OAuth providers config
+    kkbox: {
+      clientId: "{CLIENT_ID}",
+      redirectUri: 'http://localhost:8080/auth/callback'
+    }
   }
 })
 
@@ -47,6 +51,9 @@ var router = new VueRouter({
             <button @click="auth('bitbucket')" class="button--bitbucket">Auth bitbucket</button>
             <button @click="auth('linkedin')" class="button--linkedin">Auth LinkedIn</button>
             <button @click="auth('live')" class="button--live">Auth Live</button>
+
+            <hr />
+            <button @click="auth('kkbox')" class="button--live">Auth KKBOX</button>
 
             <pre class="response" v-if="response !== null">{{JSON.stringify(response, null, 2)}}</pre>
           </div>
@@ -128,6 +135,8 @@ var router = new VueRouter({
               } else if (provider === 'linkedin') {
                 this_.response = authResponse
               } else if (provider === 'live') {
+                this_.response = authResponse
+              } else if (provider === 'kkbox') {
                 this_.response = authResponse
               }
             }).catch(function (err) {
